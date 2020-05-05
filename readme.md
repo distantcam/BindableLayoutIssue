@@ -1,0 +1,1 @@
+![Screencap showing the issue by toggling the checkboxes](screencap.gif)
