@@ -3,14 +3,9 @@
     x:Class="BindableLayoutIssue.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:bindablelayoutissue="clr-namespace:BindableLayoutIssue"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-
-    <ContentPage.Resources>
-        <bindablelayoutissue:IsNotEmptyConverter x:Key="IsNotEmptyConverter" />
-    </ContentPage.Resources>
 
     <StackLayout Padding="10">
         <StackLayout BindableLayout.ItemsSource="{Binding Items}">
@@ -27,7 +22,7 @@
         <StackLayout
             BackgroundColor="Yellow"
             BindableLayout.ItemsSource="{Binding SelectedItems}"
-            IsVisible="{Binding SelectedItems, Converter={StaticResource IsNotEmptyConverter}}"
+            IsVisible="{Binding SelectedVisible}"
             VerticalOptions="Fill">
             <BindableLayout.ItemTemplate>
                 <DataTemplate>
