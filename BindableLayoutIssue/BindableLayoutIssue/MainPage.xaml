@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="BindableLayoutIssue.MainPage"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:bindablelayoutissue="clr-namespace:BindableLayoutIssue"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <ContentPage.Resources>
+        <bindablelayoutissue:IsNotEmptyConverter x:Key="IsNotEmptyConverter" />
+    </ContentPage.Resources>
+
+    <StackLayout Padding="10">
+        <StackLayout BindableLayout.ItemsSource="{Binding Items}">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Orientation="Horizontal">
+                        <Label Text="{Binding Item}" VerticalOptions="CenterAndExpand" />
+                        <CheckBox IsChecked="{Binding Selected}" VerticalOptions="CenterAndExpand" />
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+
+        <StackLayout
+            BackgroundColor="Yellow"
+            BindableLayout.ItemsSource="{Binding SelectedItems}"
+            IsVisible="{Binding SelectedItems, Converter={StaticResource IsNotEmptyConverter}}"
+            VerticalOptions="Fill">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <Label BackgroundColor="LightBlue" Text="{Binding Item}" />
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </StackLayout>
+    </StackLayout>
+
+</ContentPage>
